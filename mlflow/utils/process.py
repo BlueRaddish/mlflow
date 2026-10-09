@@ -85,7 +85,7 @@ def _exec_cmd(
         )
 
     # Copy current `os.environ` or passed in `env` to avoid mutating it.
-    env = env or os.environ.copy()
+    env = os.environ.copy() if env is None else dict(env)
     if extra_env is not None:
         env.update(extra_env)
 
