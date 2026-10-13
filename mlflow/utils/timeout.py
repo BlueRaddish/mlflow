@@ -33,10 +33,11 @@ def run_with_timeout(seconds):
     def signal_handler(signum, frame):
         raise MlflowTimeoutError(f"Operation timed out after {seconds} seconds")
 
-    signal.signal(signal.SIGALRM, signal_handler)
-    signal.alarm(seconds)
+    previous_handler = signal.signal(signal.SIGALRM, signal_handler)
 
     try:
+        signal.alarm(seconds)
         yield
     finally:
         signal.alarm(0)  # Disable the alarm after the operation completes or times out
+        signal.signal(signal.SIGALRM, previous_handler)
