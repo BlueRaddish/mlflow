@@ -1,4 +1,5 @@
 import codecs
+import copy
 import os
 import shutil
 import tempfile
@@ -114,7 +115,7 @@ class safe_edit_yaml:
         self._original = read_yaml(root, file_name)
 
     def __enter__(self):
-        new_dict = self._edit_func(self._original.copy())
+        new_dict = self._edit_func(copy.deepcopy(self._original))
         write_yaml(self._root, self._file_name, new_dict, overwrite=True)
 
     def __exit__(self, *args):

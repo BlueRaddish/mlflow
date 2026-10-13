@@ -1,6 +1,8 @@
 import codecs
 import os
 
+import pytest
+
 from mlflow.utils.yaml_utils import (
     read_yaml,
     safe_edit_yaml,
@@ -74,3 +76,26 @@ b: 3
         actual_unsorted = f.read()
 
     assert actual_unsorted == expected_unsorted
+
+
+@pytest.mark.parametrize("body_error", [False, True])
+def test_safe_edit_yaml_restores_nested_values(tmp_path, body_error):
+    original = {"model": {"threshold": 0.5, "labels": ["original"]}}
+    write_yaml(str(tmp_path), "config.yaml", original)
+
+    def edit(data):
+        data["model"]["threshold"] = 0.9
+        data["model"]["labels"].append("temporary")
+        return data
+
+    try:
+        with safe_edit_yaml(str(tmp_path), "config.yaml", edit):
+            assert read_yaml(str(tmp_path), "config.yaml") == {
+                "model": {"threshold": 0.9, "labels": ["original", "temporary"]}
+            }
+            if body_error:
+                raise ValueError("body failed")
+    except ValueError:
+        assert body_error
+
+    assert read_yaml(str(tmp_path), "config.yaml") == original
