@@ -1,0 +1,80 @@
+{
+  "scope_id": "ml-evening",
+  "repo": "mlflow/mlflow",
+  "cwd": "C:\\Users\\there\\codex\\contributions\\oct13-evening-ml",
+  "base": "602fd20b0a6a50a8de71cd7893fe491c8679da7f",
+  "branch": "fix/oct13-evening-ml",
+  "files": [
+    "mlflow/utils/search_utils.py",
+    "tests/utils/test_search_utils.py"
+  ],
+  "title": "Reject malformed JSON shapes in shared search page tokens",
+  "personal_review_required": true,
+  "dco_required": true,
+  "patch_file": "C:\\Users\\there\\codex\\open-source-contributions\\evidence\\oct13-evening-ml-evening-review-v4.patch",
+  "patch_sha256": "38c6463d0a450677fb3eeeb01f91aa5ff62322d438031aaec47660a6d2bcba15",
+  "source_proof": {
+    "mlflow/utils/search_utils.py": {
+      "working_sha256": "47f0f1879f983228dea73b3c98f30957b3a71bb5c5fdbb7fe4ae696ca98596d2",
+      "canonical_LF_sha256": "47f0f1879f983228dea73b3c98f30957b3a71bb5c5fdbb7fe4ae696ca98596d2",
+      "target_git_blob": "505c80efc7994fa5e5f07097baf50ea2fdae70da"
+    },
+    "tests/utils/test_search_utils.py": {
+      "working_sha256": "e5a3a4508376c18a8d0ab27a32b68f9e79b9e0a24bd6fce9a47a247d52ab9e40",
+      "canonical_LF_sha256": "e5a3a4508376c18a8d0ab27a32b68f9e79b9e0a24bd6fce9a47a247d52ab9e40",
+      "target_git_blob": "acc71b5443573e48763e8f5e997b8acbd5bc26fb"
+    }
+  },
+  "base_blobs": {
+    "mlflow/utils/search_utils.py": "05f059363c91f99d7121c20d389bf8c59775a053",
+    "tests/utils/test_search_utils.py": "41ae83e55140c7aa756366bc028bf94d8f146b26"
+  },
+  "test_state": "not run locally; actual baseline and green public-runner validation pending",
+  "hooks_state": "not run locally; normal scoped repository hooks pending",
+  "public_mutations": [],
+  "source_commits": [],
+  "patch_name": "ml-evening.patch",
+  "config_sha256": {
+    "pyproject.toml": "a05bb808bd47dc727465386e2242534d4bebeed84df0248d9e15afe3788c0666",
+    ".pre-commit-config.yaml": "26b4041b502f2c8ce009a05d60ff04f142def1d0df4a62e864c6b45c733c3bc8",
+    "dev/ruff.py": "c371b8d2c1aef4518021eb44fdad2fd4a2bb6cfb20750fb4db8ad2e06568359a",
+    "dev/format.py": "62d8e10fc92c158c51c2caf903e97af66c9278e0dd2073187c7f9d02d8ffded8",
+    "uv.lock": "01e982d9aa2730b6fc03a83d9ee60c8ede7822d91933f1bcc6e30e1073e5b6f7",
+    ".python-version": "7a41a41354ab8049091ef1a00253ca00567f5a1d3f9aef5502c0b4b5ce9ae707"
+  },
+  "base_source": {
+    "mlflow/utils/search_utils.py": {
+      "canonical_LF_sha256": "9cd42db5d3ecac7440a53306d57c0333929af9468f3223b2ac3e2f8b29850afe",
+      "target_git_blob": "05f059363c91f99d7121c20d389bf8c59775a053"
+    },
+    "tests/utils/test_search_utils.py": {
+      "canonical_LF_sha256": "c8216475ad54504e91f57440e191ca56c6bb9393c187d4a6cf4e8f434e350cd7",
+      "target_git_blob": "41ae83e55140c7aa756366bc028bf94d8f146b26"
+    }
+  },
+  "commit_date": "2026-10-14T03:55:07+0000",
+  "resolution_cutoff": "not overridden; use tracked uv.lock and pyproject P7D span with --locked",
+  "test_commands": [
+    [
+      "uv",
+      "run",
+      "--no-sync",
+      "python",
+      "-c",
+      "from pathlib import Path; import hashlib; import mlflow.utils.search_utils as source; path = Path(source.__file__).resolve(); assert path == Path('mlflow/utils/search_utils.py').resolve(); print('MLFLOW_SOURCE_ORIGIN=' + str(path) + ':sha256=' + hashlib.sha256(path.read_bytes()).hexdigest()); import sys; print('MLFLOW_RUNTIME_PYTHON=' + sys.version)"
+    ],
+    [
+      "uv",
+      "run",
+      "--no-sync",
+      "pytest",
+      "tests/utils/test_search_utils.py",
+      "-q",
+      "--junitxml=../proof/ml-owning.xml"
+    ]
+  ],
+  "personal_remote_job_required": false,
+  "initial_source_commit_permitted": false,
+  "issue_readiness": "No issue filed or maintainer readiness agreement; source research/testing only",
+  "declared_python_version": "3.10"
+}
