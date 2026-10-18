@@ -1,0 +1,30 @@
+name: Oct17 evening independent MLflow source review
+on:
+  push:
+    branches: ['ci/oct17e-mm-ml-review26834-v2']
+permissions:
+  contents: read
+jobs:
+  review-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: mlflow/mlflow
+          ref: c392131bc84d1bb8aa446fbec976cccffb1cd271
+          fetch-depth: 2
+          path: source
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.12.23'
+          enable-cache: false
+      - name: Gate genuine regressions then owning tests and normal scoped hooks
+        run: python .ci-reviews/_ml_review.py --source source
