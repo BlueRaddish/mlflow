@@ -1,0 +1,46 @@
+{
+  "label": "ml",
+  "scope_id": "ml-oct18e-review26290",
+  "repo": "mlflow/mlflow",
+  "reviewed_PR": 26290,
+  "head": "2104e0a2b3b0bba78077ec96e21be78dc4bd2ad5",
+  "actual_parent": "cb1e3747ce6bb0024fb55a88a5b8238baec0acfe",
+  "files": [
+    "mlflow/utils/search_utils.py",
+    "tests/utils/test_search_utils.py"
+  ],
+  "production": "mlflow/utils/search_utils.py",
+  "module": "mlflow.utils.search_utils",
+  "source_sha256": {
+    "mlflow/utils/search_utils.py": "30b63ecde6c31cb0dc490dd17ef1704bba0c875fe38a3dda7b6a56b9a53442eb",
+    "tests/utils/test_search_utils.py": "aec30f82a85b0e0cc77d5c8bbe7f01370f91e815bfd6c93be93385784fd387f0"
+  },
+  "config_sha256": {
+    "pyproject.toml": "0388dd3eb1b228fa20d246d28a261302e5d403e5df4eb5a4477c8884081c84e0",
+    "uv.lock": "0d779aaa48ad422aab430c899f9eded84163d41d97e35879997a3c6223b5b026",
+    ".pre-commit-config.yaml": "26b4041b502f2c8ce009a05d60ff04f142def1d0df4a62e864c6b45c733c3bc8"
+  },
+  "baseline_source_sha256": "338c46245259ee9ff0a8a463570678426b59e396410adb1de951cdad674d9235",
+  "baseline_expected": {
+    "tests": 20,
+    "failures": 10
+  },
+  "failed_name_contains": "test_empty_fields_page_to_completion",
+  "failed_message_contains": "MlflowException:",
+  "owning_tests": {
+    "search_owners": [
+      "tests/utils/test_search_utils.py"
+    ],
+    "sql_owners": [
+      "tests/store/tracking/sqlalchemy_store/test_sqlalchemy_store_runs.py",
+      "-k",
+      "search_logged_models"
+    ]
+  },
+  "owning_minimum": {
+    "search_owners": 180,
+    "sql_owners": 10
+  },
+  "new_source_patch_or_commit": false,
+  "fresh_exact_personal_review_and_user_test_required": false
+}

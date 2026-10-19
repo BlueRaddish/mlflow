@@ -1,0 +1,33 @@
+name: Oct18 evening independent ML PR26290 review
+on:
+  push:
+    branches: ['ci/oct18e-mm-ml-review26290']
+permissions:
+  contents: read
+jobs:
+  review-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      DO_NOT_TRACK: '1'
+      MLFLOW_ENABLE_TELEMETRY: 'false'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: mlflow/mlflow
+          ref: 2104e0a2b3b0bba78077ec96e21be78dc4bd2ad5
+          fetch-depth: 2
+          path: source
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.12.23'
+          enable-cache: false
+      - name: Real baseline controls, fixed consumers, owners and ordinary scoped hooks
+        run: python .ci-reviews/_review.py --source source
