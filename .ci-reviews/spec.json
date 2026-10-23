@@ -1,0 +1,52 @@
+{
+  "repo": "mlflow/mlflow",
+  "scope_id": "ml-oct22-native-windows27008",
+  "reviewed_PR": 27008,
+  "head": "594c0324b2608186fc7e9fd968e0afd245f91b98",
+  "actual_parent": "496fdc61dc66c1635b78f7b9e73c31a2467bef93",
+  "comparison_base": "6d3ff8585e55714b22b653cd389b1b4070e5ef8e",
+  "files": [
+    "mlflow/models/model_config.py",
+    "mlflow/utils/model_utils.py",
+    "mlflow/models/model.py",
+    "tests/models/test_model_config.py"
+  ],
+  "production": [
+    "mlflow/models/model_config.py",
+    "mlflow/utils/model_utils.py",
+    "mlflow/models/model.py"
+  ],
+  "source_sha256": {
+    "mlflow/models/model_config.py": "04944c5eb917c8c2fdb29346c471f1008a6abb8a7d3d7c1e2bd4efdbd92173d3",
+    "mlflow/utils/model_utils.py": "e3182fb655fcc8c370111858669deb59601269e87c952b2907e845055b98917a",
+    "mlflow/models/model.py": "96d4a25aa043e1daba6841d9b75a0853ff441ecc7ca0e1dfec4d07530508480b",
+    "tests/models/test_model_config.py": "e098e597c8e3c4b11900c3534a83f5a73de9b40bc8b10c78bb72336724ffdfef"
+  },
+  "config_sha256": {
+    "pyproject.toml": "0388dd3eb1b228fa20d246d28a261302e5d403e5df4eb5a4477c8884081c84e0",
+    "uv.lock": "0d779aaa48ad422aab430c899f9eded84163d41d97e35879997a3c6223b5b026",
+    ".pre-commit-config.yaml": "26b4041b502f2c8ce009a05d60ff04f142def1d0df4a62e864c6b45c733c3bc8"
+  },
+  "baseline_sha256": {
+    "mlflow/models/model_config.py": "215726fac47002fbf18494b21fb022549ef03765ee2f150626374b523a234b6e",
+    "mlflow/utils/model_utils.py": "524f373d091907987e2129853baf7fc3a2068ab6cac8b51136acbdb46dd0e992",
+    "mlflow/models/model.py": "04e17819f64bb3455cca14468b8e887fcc4a443c6d1d53be2aac6d4202be2177"
+  },
+  "source_patch_or_commit": false,
+  "PR_creation_attempts": 0,
+  "expectations": {
+    "all_parent": {
+      "tests": 13,
+      "failures": 10
+    },
+    "only_model_parent": {
+      "tests": 13,
+      "failures": 4
+    },
+    "fixed": {
+      "tests": 13,
+      "failures": 0
+    }
+  },
+  "runtime": "native Windows CPython3.11, PYTHONUTF8=0, actual default text codec cp1252 asserted, no encoding/IO mocks"
+}
