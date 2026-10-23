@@ -1,0 +1,67 @@
+name: October22 native Windows UTF-8 config review
+on:
+  push:
+    branches: ['ci/oct22-mm-ml-windows-config-v2']
+permissions:
+  contents: read
+jobs:
+  native-windows:
+    runs-on: windows-2025
+    timeout-minutes: 45
+    env:
+      PYTHONUTF8: '0'
+      PYTHONIOENCODING: 'utf-8'
+      PYTHONCOERCECLOCALE: '0'
+      DO_NOT_TRACK: '1'
+      MLFLOW_ENABLE_TELEMETRY: 'false'
+      MLFLOW_UV_AUTO_DETECT: 'false'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: git config --global core.autocrlf false
+      - uses: actions/checkout@v4
+        with:
+          repository: mlflow/mlflow
+          ref: 594c0324b2608186fc7e9fd968e0afd245f91b98
+          fetch-depth: 2
+          path: source
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.12.23'
+          enable-cache: false
+      - run: python .ci-reviews/verify.py --source source --mode windows
+  normal-quality:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      PYTHONUTF8: '0'
+      PYTHONIOENCODING: 'utf-8'
+      PYTHONCOERCECLOCALE: '0'
+      DO_NOT_TRACK: '1'
+      MLFLOW_ENABLE_TELEMETRY: 'false'
+      MLFLOW_UV_AUTO_DETECT: 'false'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: git config --global core.autocrlf false
+      - uses: actions/checkout@v4
+        with:
+          repository: mlflow/mlflow
+          ref: 594c0324b2608186fc7e9fd968e0afd245f91b98
+          fetch-depth: 2
+          path: source
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.12.23'
+          enable-cache: false
+      - run: python .ci-reviews/verify.py --source source --mode quality
